@@ -25,7 +25,6 @@ class DoublyLinkedList
       temp = @head
       @head = new_node(value,@head)
       temp.prev_node = @head
-      @tail = temp
     end
   end
 
@@ -45,6 +44,17 @@ class DoublyLinkedList
     @tail =  temp.next_node
   end
 
+  # delete first node
+
+  def delete_first
+    @head = @head.next_node
+    @head.prev_node = nil
+  end
+
+  def delete_last
+    @tail = @tail.prev_node
+    @tail.next_node = nil
+  end
   # Show list
 
   def show_list
@@ -75,6 +85,8 @@ end
 list = DoublyLinkedList.new
 (1..5).each {|i| list.append(i)}
 list.upshift(9)
+list.delete_first
+list.delete_last
 list.show_list
 list.show_list_in_reverse
 
